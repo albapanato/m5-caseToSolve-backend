@@ -9,19 +9,19 @@ const debug = createDebug('FP:App');
 export const app = express();
 debug('Loaded Express App');
 const corsOptions = {
-    origin: '*',
+  origin: '*',
 };
 app.use(morgan('dev'));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.set('trust proxy', true);
 app.use((req, res, next) => {
-    res.header('Content-Security-Policy', 'upgrade-insecure-requests;');
-    next();
+  res.header('Content-Security-Policy', 'upgrade-insecure-requests;');
+  next();
 });
 app.use(express.static('public'));
 app.get('/', (_req, res) => {
-    res.send('API Rest Info');
+  res.send('API Rest Info');
 });
 app.use('/user', userRouter);
 app.use('/film', filmRouter);

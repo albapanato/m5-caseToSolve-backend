@@ -1,4 +1,3 @@
- 
 import createDebug from 'debug';
 import { Controller } from './controller.js';
 const debug = createDebug('FP:FilmController');
@@ -30,7 +29,7 @@ export class FilmController extends Controller {
     try {
       const page = Number(req.query.page) || 1;
       const limit = 6;
-      const {genre} = req.query;
+      const { genre } = req.query;
       let items = [];
       let next = null;
       let previous = null;
@@ -74,6 +73,7 @@ export class FilmController extends Controller {
           previous,
           next,
         };
+        console.log('response films', response);
         res.send(response);
       }
     } catch (error) {

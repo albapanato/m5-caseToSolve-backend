@@ -12,17 +12,20 @@ export class UserController extends Controller {
 
   async register(req, res, next) {
     try {
+      console.log('ENTRa en register');
       const passwd = await AuthServices.hash(req.body.password);
       req.body.password = passwd;
       res.status(201);
       res.send(await this.repo.create(req.body));
     } catch (error) {
+      console.log('error------', error);
       next(error);
     }
   }
 
   async login(req, res, next) {
     try {
+      console.log(req.body.user, req.body.password);
       if (!req.body.user || !req.body.password)
         throw new HttpError(400, 'Bad Request', 'Invalid user or password');
       let data = await this.repo.search({

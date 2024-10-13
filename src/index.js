@@ -8,6 +8,7 @@ const server = http.createServer(app);
 dbConnect()
   .then((mongoose) => {
     server.listen(PORT);
+    console.log('connection', mongoose.connection.db);
     debug('Connected to db:', mongoose.connection.db.databaseName);
   })
   .catch((error) => {
